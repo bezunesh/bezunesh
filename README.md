@@ -1,4 +1,11 @@
-### Hi there 👋
+### Bezunesh Alemu
+
+Software Developer / DevOps enthusiast - Python, django, REST API, AWS, GCP - Tech in Africa, Research. 
+
+#### Latest Articles
+- April 16 2021 [django, IaC, Kubernetes, CI/CD - A complete setup guide](https://bezu.hashnode.dev/iac-kubernetes-cicd-a-complete-setup-guide)
+- March 01 2021 [Setting up local Kubernetes on a virtual machine](https://bezu.hashnode.dev/setting-up-local-kubernetes-on-a-virtual-machine)
+
 
 <!--
 **bezunesh/bezunesh** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
