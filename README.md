@@ -2,22 +2,12 @@
 
 Software Developer / DevOps enthusiast - Python, django, REST API, AWS, GCP - Tech in Africa, Research. 
 
+
+- 🔭 I’m currently working on a django based rating/review app.
+- 🌱 I’m currently learning AWS, django REST framework, DevOps
+- 👯 I’m looking to collaborate on opensource projects
+
 #### Latest Articles
 - April 16 2021 [django, IaC, Kubernetes, CI/CD - A complete setup guide](https://bezu.hashnode.dev/iac-kubernetes-cicd-a-complete-setup-guide)
 - March 01 2021 [Setting up local Kubernetes on a virtual machine](https://bezu.hashnode.dev/setting-up-local-kubernetes-on-a-virtual-machine)
 
-
-<!--
-**bezunesh/bezunesh** is a ✨ _special_ ✨ repository because its `README.md` (this file) appears on your GitHub profile.
-
-Here are some ideas to get you started:
-
-- 🔭 I’m currently working on ...
-- 🌱 I’m currently learning ...
-- 👯 I’m looking to collaborate on ...
-- 🤔 I’m looking for help with ...
-- 💬 Ask me about ...
-- 📫 How to reach me: ...
-- 😄 Pronouns: ...
-- ⚡ Fun fact: ...
--->
