@@ -264,8 +264,8 @@ a, .btn {
 }
 .bannerUserImg {
   margin-left: 30px;
-  width: 240px;
-  height: 240px;
+  width: 200px;
+  height: 200px;
   border-radius: 50%;
   position: relative;
 }
@@ -280,8 +280,8 @@ a, .btn {
 .bannerUserImg::before {
   content: "";
   position: absolute;
-  left: -5px;
-  top: 13px;
+  /* left: -5px;
+  top: 13px;*/
   width: 100%;
   height: 100%;
   background-color: #EDF7FA;
@@ -292,14 +292,15 @@ a, .btn {
 }
 
 .sectionSpace {
-  padding: 80px 0;
+  padding: 50px 0;
 }
 .sectionSpaceSm {
   padding: 35px 0;
 }
 .ksText {
-	display: block;
+	display: inline;
 	padding-top: 10px;
+  padding-right: 10px;
 }
 .keySkillCard + .keySkillCard {
   padding-top: 25px;
@@ -486,7 +487,8 @@ body.navToggleActive {
 
 /* portfolio page */
 .innerPageBannerCol {
-	padding: 180px 0 150px;
+	/* padding: 180px 0 150px; */
+  padding-top: 180px;
 }
 .portfolioContentMain {
   position: relative;
@@ -547,7 +549,7 @@ body.navToggleActive {
   	padding: 150px 0 60px;
   }
   .sectionSpace {
-  	padding: 60px 0;
+  	/* padding: 60px 0; */
   }
   .footerCol {
   	padding: 30px 0;
