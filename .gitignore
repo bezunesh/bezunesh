@@ -140,3 +140,9 @@ dmypy.json
 cython_debug/
 
 .DS_Store
+
+# Static files except js images and css
+static/
+!static/js
+!static/images
+!static/css
