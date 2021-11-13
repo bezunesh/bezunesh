@@ -779,3 +779,6 @@ input[type=text], input[type=email], select, textarea {
 .detail {
   text-align: justify;
 }
+.hljs{ /* highlight js*/
+  padding: 2rem
+} 
