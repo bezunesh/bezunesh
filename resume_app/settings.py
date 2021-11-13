@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
 from pathlib import Path
+from ckeditor.configs import DEFAULT_CONFIG
 import os
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -134,18 +135,9 @@ MEDIA_ROOT = BASE_DIR / "media"
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 CKEDITOR_CONFIGS = {
-    'default':
-        {'toolbar': 'Custom',
-         'toolbar_Custom': [
-             ['Bold', 'Link', 'Unlink', 'Image'],
-         ],
-         },
-    'special': 
-        {'toolbar': 'Special', 'height': 500,
-         'toolbar_Special': 
-             [
-                 ['Bold'],
-                 ['CodeSnippet'], 
-             ], 'extraPlugins': 'codesnippet', 
+    'custom': 
+        {'toolbar': 'Custom', 'height': 500,
+         'toolbar_Custom': [ *DEFAULT_CONFIG["toolbar_Full"], ['CodeSnippet']],
+         'extraPlugins': 'codesnippet',
          }
 }
