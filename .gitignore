@@ -146,3 +146,6 @@ static/
 !static/js
 !static/images
 !static/css
+
+# Media files
+media/
