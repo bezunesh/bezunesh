@@ -132,3 +132,20 @@ MEDIA_ROOT = BASE_DIR / "media"
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+CKEDITOR_CONFIGS = {
+    'default':
+        {'toolbar': 'Custom',
+         'toolbar_Custom': [
+             ['Bold', 'Link', 'Unlink', 'Image'],
+         ],
+         },
+    'special': 
+        {'toolbar': 'Special', 'height': 500,
+         'toolbar_Special': 
+             [
+                 ['Bold'],
+                 ['CodeSnippet'], 
+             ], 'extraPlugins': 'codesnippet', 
+         }
+}
