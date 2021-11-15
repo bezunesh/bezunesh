@@ -135,6 +135,10 @@ MEDIA_ROOT = BASE_DIR / "media"
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 CKEDITOR_CONFIGS = {
+    'default':{
+        'toolbar': 'Default', 'height': 500,
+         'toolbar_Default': [*DEFAULT_CONFIG["toolbar_Full"]]
+         },
     'custom': 
         {'toolbar': 'Custom', 'height': 500,
          'toolbar_Custom': [*DEFAULT_CONFIG["toolbar_Full"], ['CodeSnippet']],
