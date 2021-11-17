@@ -782,3 +782,15 @@ input[type=text], input[type=email], select, textarea {
 .hljs{ /* highlight js*/
   padding: 2rem
 } 
+.msg {
+  position: relative;
+  padding: 1rem 1rem;
+  margin-bottom: 1rem;
+  border: 1px solid transparent;
+  border-radius: .25rem;
+}
+.success {
+  color: #055160;
+  background-color: #cff4fc;
+  border-color: #b6effb;
+}

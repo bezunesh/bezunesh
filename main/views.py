@@ -9,9 +9,11 @@ from .models import (
 	)
 
 from django.views import generic
+from django.core.mail import send_mail
+from resume_app.settings import EMAIL_HOST_USER
+import smtplib
 
-
-from . forms import ContactForm
+from .forms import ContactForm
 
 
 class IndexView(generic.TemplateView):
@@ -38,8 +40,19 @@ class ContactView(generic.FormView):
 	success_url = "/"
 	
 	def form_valid(self, form):
-		form.save()
-		messages.success(self.request, 'Thank you. We will be in touch soon.')
+		try:
+			emailSent = send_mail(
+				form.cleaned_data['name'] + ' has sent you a message',
+				form.cleaned_data['message'],
+				form.cleaned_data['email'],
+				[EMAIL_HOST_USER],
+				fail_silently=False,
+				)
+		except(smtplib.SMTPException):
+			messages.error(self.request, "Something went wrong. Message is not sent.")
+		else:
+			messages.success(self.request, 'Thank you. We will be in touch soon.')
+		
 		return super().form_valid(form)
 
 
