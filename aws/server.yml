@@ -12,7 +12,30 @@ Parameters:
       Default: 10.0.0.0/16
 
 Resources:
- 
+  S3ReadOnlyRole:
+    Type: AWS::IAM::Role
+    Properties:
+      ManagedPolicyArns:
+        - "arn:aws:iam::aws:policy/AmazonS3ReadOnlyAccess"
+      AssumeRolePolicyDocument: 
+        Version: "2012-10-17"
+        Statement: 
+          - 
+            Effect: "Allow"
+            Principal: 
+              Service: 
+                - "ec2.amazonaws.com"
+            Action: 
+              - "sts:AssumeRole"
+      Path: "/"
+
+  S3ReadOnlyProfile: 
+    Type: AWS::IAM::InstanceProfile
+    Properties: 
+      Path: "/"
+      Roles: 
+        - !Ref S3ReadOnlyRole 
+
   WebServerSecGroup:
     Type: AWS::EC2::SecurityGroup
     Properties:
@@ -41,17 +64,17 @@ Resources:
       UserData: !Base64 |
           #!/bin/bash
           # TODO: 
-          # cd /home
-          # mkdir project 
-          # - add  public-ssh key is added to Github
-          # - Git clone app
-          # - Make sure pyton3 is installed
+          # - Make sure git and pyton3 is installed
           # - Install python3 venv module
-          # - Create venv
-          # - Make install
-          # - Make migrate
-          # - Make run      
+          # cd /home
+          # mkdir project && cd project
+          # copy ssh-key, make sure to upload ssh key to s3
+          # aws s3 cp s3://resume_app/key/id_rsa ~/.ssh/
+          # git clone git@github.com:bezunesh/bezunesh.git
+          # cd bezunesh
+          # make all    
       ImageId: ami-083654bd07b5da81d
+      IamInstanceProfile: !Ref S3ReadOnlyProfile
       SecurityGroups:
         - Ref: WebServerSecGroup
       InstanceType: t2.micro
