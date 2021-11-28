@@ -24,7 +24,11 @@ Resources:
       - IpProtocol: tcp
         FromPort: 8080
         ToPort: 8080
-        SourceSecurityGroupId: !Ref LBSecGroup
+        CidrIp: 0.0.0.0/0
+      - IpProtocol: ssh
+        FromPort: 22
+        ToPort: 22
+        CidrIp: !Ref VpcCIDR
       SecurityGroupEgress:
       - IpProtocol: tcp
         FromPort: 0
@@ -37,7 +41,9 @@ Resources:
       UserData: !Base64 |
           #!/bin/bash
           # TODO: 
-          # - Cd to project diracroy  
+          # cd /home
+          # mkdir project 
+          # - add  public-ssh key is added to Github
           # - Git clone app
           # - Make sure pyton3 is installed
           # - Install python3 venv module
@@ -45,14 +51,14 @@ Resources:
           # - Make install
           # - Make migrate
           # - Make run      
-      ImageId: ami-0747bdcabd34c712a
+      ImageId: ami-083654bd07b5da81d
       SecurityGroups:
         - Ref: WebServerSecGroup
-      InstanceType: t3.micro
+      InstanceType: t2.micro
       BlockDeviceMappings:
-        - DeviceName: "/dev/sdk"
+        - DeviceName: "/dev/sda1"
           Ebs:
-            VolumeSize: '10'
+            VolumeSize: '8'
   
   WebAppAutoScalingGroup:
     Type: AWS::AutoScaling::AutoScalingGroup
