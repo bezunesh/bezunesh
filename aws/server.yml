@@ -63,16 +63,17 @@ Resources:
     Properties:
       UserData: !Base64 |
           #!/bin/bash
-          # TODO: 
-          # - Make sure git and pyton3 is installed
-          # - Install python3 venv module
-          # cd /home
-          # mkdir project && cd project
+          apt update -y
+          apt -y upgrade
+          apt install -y build-essential python3-pip python3-venv
+          apt-get install make -y
+          cd /home
+          mkdir project && cd project
           # copy ssh-key, make sure to upload ssh key to s3
-          # aws s3 cp s3://resume_app/key/id_rsa ~/.ssh/
-          # git clone git@github.com:bezunesh/bezunesh.git
-          # cd bezunesh
-          # make all    
+          aws s3 cp s3://resume_app/key/id_rsa ~/.ssh/
+          git clone git@github.com:bezunesh/bezunesh.git
+          cd bezunesh
+          make all    
       ImageId: ami-083654bd07b5da81d
       IamInstanceProfile: !Ref S3ReadOnlyProfile
       SecurityGroups:
