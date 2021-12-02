@@ -48,7 +48,7 @@ Resources:
         FromPort: 8080
         ToPort: 8080
         CidrIp: 0.0.0.0/0
-      - IpProtocol: ssh
+      - IpProtocol: tcp
         FromPort: 22
         ToPort: 22
         CidrIp: !Ref VpcCIDR
@@ -89,7 +89,7 @@ Resources:
     Properties:
       VPCZoneIdentifier:
       - Fn::ImportValue: 
-          !Sub "${EnvironmentName}-PRIV-SN"
+          !Sub "${EnvironmentName}-PRI-SN"
       LaunchConfigurationName:
         Ref: WebAppLaunchConfig
       MinSize: '1'
