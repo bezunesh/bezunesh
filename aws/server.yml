@@ -70,7 +70,7 @@ Resources:
           cd /home
           mkdir project && cd project
           # copy ssh-key, make sure to upload ssh key to s3
-          aws s3 cp s3://portfolio_app/key/id_rsa ~/.ssh/
+          aws s3 cp s3://bezu-portfolio-app/key/portfolio-app ~/.ssh/
           git clone git@github.com:bezunesh/bezunesh.git
           cd bezunesh
           make all    
