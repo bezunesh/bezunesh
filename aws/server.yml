@@ -51,7 +51,7 @@ Resources:
       - IpProtocol: tcp
         FromPort: 22
         ToPort: 22
-        CidrIp: !Ref VpcCIDR
+        CidrIp: 0.0.0.0/0
       SecurityGroupEgress:
       - IpProtocol: tcp
         FromPort: 0
@@ -61,10 +61,12 @@ Resources:
   WebAppLaunchConfig:
     Type: AWS::AutoScaling::LaunchConfiguration
     Properties:
+      KeyName: "bezu-aws"
       UserData: !Base64 |
           #!/bin/bash
           apt update -y
           apt -y upgrade
+          apt install -y awscli
           apt install -y build-essential python3-pip python3-venv
           apt-get install make -y
           cd /home
@@ -89,7 +91,7 @@ Resources:
     Properties:
       VPCZoneIdentifier:
       - Fn::ImportValue: 
-          !Sub "${EnvironmentName}-PRI-SN"
+          !Sub "${EnvironmentName}-PUB-SN"
       LaunchConfigurationName:
         Ref: WebAppLaunchConfig
       MinSize: '1'
