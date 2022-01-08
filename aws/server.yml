@@ -1,6 +1,5 @@
 Description: >
-    This template deploys security groups, an autoscaling group, a launch configuration and a load balancer along with it's
-    listner, listner rule and a target group.
+    This template deploys security groups, an autoscaling group and launch configuration.
 Parameters:
 
     EnvironmentName:

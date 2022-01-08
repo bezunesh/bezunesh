@@ -10,10 +10,6 @@
 	{
 		"ParameterKey": "PublicSubnetCIDR",
 		"ParameterValue": "10.0.0.0/24"
-	},
-	{
-		"ParameterKey": "PrivateSubnetCIDR",
-		"ParameterValue": "10.0.1.0/24"
 	}
 
 ]

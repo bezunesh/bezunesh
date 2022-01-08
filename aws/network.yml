@@ -16,11 +16,6 @@ Parameters:
       Type: String
       Default: 10.0.0.0/24
 
-  PrivateSubnetCIDR:
-      Description: CIDR IP range for the private subnet
-      Type: String
-      Default: 10.0.1.0/24
-
 Resources:
 
   VPC:
@@ -55,29 +50,6 @@ Resources:
       Tags: 
         - Key: Name 
           Value: !Sub ${EnvironmentName} Public Subnet
-
-  PrivateSubnet: 
-    Type: AWS::EC2::Subnet
-    Properties:
-      VpcId: !Ref VPC
-      AvailabilityZone: !Select [ 0, !GetAZs '' ]
-      CidrBlock: !Ref PrivateSubnetCIDR
-      MapPublicIpOnLaunch: false
-      Tags: 
-        - Key: Name 
-          Value: !Sub ${EnvironmentName} Private Subnet
-  
-  NatGatewayEIP:
-    Type: AWS::EC2::EIP
-    DependsOn: InternetGatewayAttachment
-    Properties: 
-      Domain: vpc
-
-  NatGateway: 
-    Type: AWS::EC2::NatGateway
-    Properties: 
-      AllocationId: !GetAtt NatGatewayEIP.AllocationId
-      SubnetId: !Ref PublicSubnet
   
   PublicRouteTable:
     Type: AWS::EC2::RouteTable
@@ -100,27 +72,6 @@ Resources:
     Properties:
         RouteTableId: !Ref PublicRouteTable
         SubnetId: !Ref PublicSubnet
-  
-  PrivateRouteTable:
-      Type: AWS::EC2::RouteTable
-      Properties: 
-          VpcId: !Ref VPC
-          Tags: 
-              - Key: Name 
-                Value: !Sub ${EnvironmentName} Private Routes
-
-  DefaultPrivateRoute:
-      Type: AWS::EC2::Route
-      Properties:
-          RouteTableId: !Ref PrivateRouteTable
-          DestinationCidrBlock: 0.0.0.0/0
-          NatGatewayId: !Ref NatGateway
-  
-  PrivateSubnetRouteTableAssociation:
-      Type: AWS::EC2::SubnetRouteTableAssociation
-      Properties:
-          RouteTableId: !Ref PrivateRouteTable
-          SubnetId: !Ref PrivateSubnet
 
 Outputs: 
 
@@ -136,20 +87,8 @@ Outputs:
         Export:
           Name: !Sub ${EnvironmentName}-PUB-RT
 
-    VPCPrivateRouteTable:
-        Description: Private Routing
-        Value: !Ref PrivateRouteTable
-        Export:
-          Name: !Sub ${EnvironmentName}-PRI-RT
-
     PublicSubnet:
         Description: A reference to the public subnet
         Value: !Ref PublicSubnet
         Export:
           Name: !Sub ${EnvironmentName}-PUB-SN
-
-    PrivateSubnet:
-        Description: A reference to the private subnet
-        Value: !Ref PrivateSubnet
-        Export:
-          Name: !Sub ${EnvironmentName}-PRI-SN
