@@ -68,7 +68,7 @@ Resources:
           apt install -y awscli
           apt install -y build-essential python3-pip python3-venv
           apt-get install make -y
-          cd /home
+          cd /home/ubuntu
           mkdir project && cd project
           # copy ssh-key, make sure to upload ssh key to s3
           aws s3 cp s3://bezu-portfolio-app/key/id_rsa /home/ubuntu/.ssh
