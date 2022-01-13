@@ -11,6 +11,10 @@ install:
 migrate:
 	# Run database migrations
 	python manage.py migrate
+
 run:
 	# Run development server
 	python manage.py runserver 0.0.0.0:8080
+
+collect_static:
+	python manage.py collectstatic
