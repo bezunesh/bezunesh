@@ -25,7 +25,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-v8bzoj5)*&_%x-yy7o*z-2$*m1uuo*hbtb(n)%@bboej@%wkox'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['*']
 
@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'ckeditor',
-    'main'
+    'main.apps.MainConfig'
 ]
 
 MIDDLEWARE = [
@@ -122,9 +122,17 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
+# A url prefix to use when serving static files
+STATIC_URL = "file/"
 
-STATIC_URL = "/static/"
-STATIC_ROOT = BASE_DIR / "static"
+# A location to store static files other than inside an app
+STATICFILES_DIRS = [
+      BASE_DIR / "static/"
+]
+
+# Where collectstatic util keeps the static files collected from everywhere
+STATIC_ROOT = os.path.join(BASE_DIR, 'collect_static')
+
 
 MEDIA_URL = "/media/"
 MEDIA_ROOT = BASE_DIR / "media"
