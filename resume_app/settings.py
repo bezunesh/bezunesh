@@ -123,15 +123,15 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
 # A url prefix to use when serving static files
-STATIC_URL = "file/"
+STATIC_URL = "static/"
 
 # A location to store static files other than inside an app
-STATICFILES_DIRS = [
-      BASE_DIR / "static/"
-]
+# STATICFILES_DIRS = [
+#      
+#]
 
 # Where collectstatic util keeps the static files collected from everywhere
-STATIC_ROOT = os.path.join(BASE_DIR, 'collect_static')
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 
 MEDIA_URL = "/media/"
