@@ -1,0 +1,14 @@
+server {
+    listen 80;
+    server_name 3.227.97.173;
+
+    location /static/ {
+	root /home/ubuntu/project/bezunesh;
+    }
+
+    location / {
+        proxy_pass http://3.227.97.173:8080;
+        # proxy_set_header Host $host;
+        # proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    }
+  }

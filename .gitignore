@@ -1,6 +1,4 @@
-mediafiles/
-collect_static/
-# Media files
+static/
 media/
 
 # Byte-compiled / optimized / DLL files

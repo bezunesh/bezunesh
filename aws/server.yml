@@ -72,6 +72,7 @@ Resources:
           apt install -y awscli
           apt install -y build-essential python3-pip python3-venv
           apt-get install make -y
+          apt-get install nginx -y
           # change user
           su - ubuntu
           whoami
@@ -79,6 +80,12 @@ Resources:
           mkdir project 
           chown ubuntu:ubuntu project
           cd project
+          # copy nginx site configuration
+          aws s3 cp s3://bezu-portfolio-app/conf/nginx /etc/nginx/sites-available/portfolio
+          # enable site
+          ln -s /etc/nginx/sites-enabled/portfolio
+          # restart nginx
+          systemctl restart nginx
           # copy ssh-key, make sure to upload ssh key to s3
           aws s3 cp s3://bezu-portfolio-app/key/id_rsa /home/ubuntu/.ssh
           ssh-keyscan -t rsa github.com >> /home/ubuntu/.ssh/known_hosts
