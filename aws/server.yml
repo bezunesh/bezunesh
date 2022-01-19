@@ -83,7 +83,8 @@ Resources:
           # copy nginx site configuration
           aws s3 cp s3://bezu-portfolio-app/conf/nginx /etc/nginx/sites-available/portfolio
           # enable site
-          ln -s /etc/nginx/sites-enabled/portfolio
+          cd /etc/nginx/sites-enabled
+          ln -s /etc/nginx/sites-available/portfolio
           # restart nginx
           systemctl restart nginx
           # copy ssh-key, make sure to upload ssh key to s3
