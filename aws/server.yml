@@ -73,13 +73,11 @@ Resources:
           apt install -y build-essential python3-pip python3-venv
           apt-get install make -y
           apt-get install nginx -y
-          # change user
-          su - ubuntu
-          whoami
-          cd /home/ubuntu
-          mkdir project 
-          chown ubuntu:ubuntu project
-          cd project
+          # copy gunicorn service file
+          aws s3 cp s3://bezu-portfolio-app/conf/gunicorn.service /etc/systemd/system/gunicorn.service
+          # start gunicorn service and enable it to start at boot
+          systemctl start gunicorn
+          systemctl enable gunicorn
           # copy nginx site configuration
           aws s3 cp s3://bezu-portfolio-app/conf/nginx /etc/nginx/sites-available/portfolio
           # enable site
@@ -87,9 +85,14 @@ Resources:
           ln -s /etc/nginx/sites-available/portfolio
           # restart nginx
           systemctl restart nginx
-          # copy ssh-key, make sure to upload ssh key to s3
+          # copy ssh-key
           aws s3 cp s3://bezu-portfolio-app/key/id_rsa /home/ubuntu/.ssh
           ssh-keyscan -t rsa github.com >> /home/ubuntu/.ssh/known_hosts
+          chown ubuntu:ubuntu /home/ubuntu/.ssh/known_hosts
+          cd /home/ubuntu
+          mkdir project 
+          chown ubuntu:ubuntu project
+          cd project
           git clone git@github.com:bezunesh/bezunesh.git
           cd bezunesh
           make all    

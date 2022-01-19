@@ -1,0 +1,11 @@
+Description=gunicorn daemon
+After=network.target
+
+[Service]
+User=ubuntu
+Group=www-data
+WorkingDirectory=/home/ubuntu/project/bezunesh
+ExecStart=/home/ubuntu/project/bezunesh/.venv/bin/gunicorn --access-logfile - --workers 3 --bind unix:/home/ubuntu/project/bezunesh/resume_app.sock resume_app.wsgi:application
+
+[Install]
+WantedBy=multi-user.target
