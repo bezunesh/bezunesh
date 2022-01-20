@@ -77,9 +77,12 @@ Resources:
           aws s3 cp s3://bezu-portfolio-app/key/id_rsa /home/ubuntu/.ssh
           ssh-keyscan -t rsa github.com >> /home/ubuntu/.ssh/known_hosts
           chown ubuntu:ubuntu /home/ubuntu/.ssh/known_hosts
-          sudo -u ubuntu sh -c "cd /home/ubuntu; mkdir project; cd project; git clone git@github.com:bezunesh/bezunesh.git"
-          cd bezunesh
-          make all  
+          # clone repo
+          sudo -u ubuntu sh -c "cd /home/ubuntu; mkdir project; \
+            cd project; \
+            git clone git@github.com:bezunesh/bezunesh.git; \
+            cd bezunesh; \
+            make all"
           # copy gunicorn service file
           aws s3 cp s3://bezu-portfolio-app/conf/gunicorn.service /etc/systemd/system/gunicorn.service
           # start gunicorn service and enable it to start at boot
