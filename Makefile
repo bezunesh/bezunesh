@@ -1,20 +1,18 @@
-all: setup install migrate collect_static
+all: setup  migrate collect_static
 
 setup:
 	python3 -m venv .venv
-	source .venv/bin/activate
-
-install:
-	# This should be run from inside a virtualenv
+	. .venv/bin/activate && \
 	pip install --upgrade pip &&\
-		pip install -r requirements.txt
+    pip install -r requirements.txt
+
 migrate:
 	# Run database migrations
-	python manage.py migrate
+	python3 manage.py migrate
 
 run_dev:
 	# Run development server
-	python manage.py runserver 0.0.0.0:8080
+	python3 manage.py runserver 0.0.0.0:8080
 
 collect_static:
-	python manage.py collectstatic
+	python3 manage.py collectstatic --noinput
