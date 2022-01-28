@@ -51,7 +51,7 @@ class ContactView(generic.FormView):
 		except(smtplib.SMTPException):
 			messages.error(self.request, "Something went wrong. Message is not sent.")
 		else:
-			messages.success(self.request, 'Thank you. We will be in touch soon.')
+			messages.success(self.request, 'Thank you. I will be in touch soon.')
 		
 		return super().form_valid(form)
 

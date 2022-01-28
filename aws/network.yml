@@ -1,23 +1,19 @@
 Description: >
   This template deploys a VPC, a public subnet and a private subnet an internet and a NAT gateways.
 Parameters:
-  
   EnvironmentName:
     Description: A string that will be used as a prefix on the resource names
     Type: String
-
   VpcCIDR:
     Description: CIDR IP range for the VPC
     Type: String
     Default: 10.0.0.0/16
-
   PublicSubnetCIDR:
       Description: CIDR IP range for the public subnet
       Type: String
       Default: 10.0.0.0/24
 
 Resources:
-
   VPC:
     Type: AWS::EC2::VPC
     Properties:
